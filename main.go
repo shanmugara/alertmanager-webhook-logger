@@ -19,11 +19,12 @@ package main
 import (
 	"encoding/json"
 	"flag"
+	"fmt"
 	errorLog "log"
 	"net/http"
 	"os"
 
-	"github.com/go-kit/kit/log"
+	"github.com/go-kit/log"
 	"github.com/prometheus/alertmanager/template"
 )
 
@@ -52,19 +53,21 @@ func main() {
 		Logger: logger,
 	})
 
-        if *tls {
+	if *tls {
 		if err := http.ListenAndServeTLS(*address, *tlsCertPath, *tlsKeyPath, nil); err != nil {
 			errorLog.Fatalf("failed to start https server: %v", err)
-                }
-        } else {
+		}
+	} else {
 		if err := http.ListenAndServe(*address, nil); err != nil {
 			errorLog.Fatalf("failed to start http server: %v", err)
-                }
+		}
 	}
 }
 
 func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	var alerts template.Data
+	// debug
+	fmt.Println("r.Body:", r.Body)
 	err := json.NewDecoder(r.Body).Decode(&alerts)
 	if err != nil {
 		errorLog.Printf("cannot parse content because of %s", err)

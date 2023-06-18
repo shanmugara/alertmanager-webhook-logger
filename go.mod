@@ -1,9 +1,28 @@
-module github.com/tomtom-international/alertmanager-webhook-logger
+module alertmanager-webhook-logger
 
-go 1.16
+go 1.20
 
 require (
-	github.com/go-kit/kit v0.10.0
-	github.com/kami-zh/go-capturer v0.0.0-20171211120116-e492ea43421d
-	github.com/prometheus/alertmanager v0.21.0
+	github.com/go-kit/kit v0.12.0
+	github.com/prometheus/alertmanager v0.25.0
+	github.com/zenizh/go-capturer v0.0.0-20211219060012-52ea6c8fed04
+)
+
+require (
+	github.com/beorn7/perks v1.0.1 // indirect
+	github.com/cespare/xxhash/v2 v2.2.0 // indirect
+	github.com/go-kit/log v0.2.1 // indirect
+	github.com/go-logfmt/logfmt v0.5.1 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
+	github.com/prometheus/client_golang v1.14.0 // indirect
+	github.com/prometheus/client_model v0.3.0 // indirect
+	github.com/prometheus/common v0.38.0 // indirect
+	github.com/prometheus/procfs v0.8.0 // indirect
+	github.com/shurcooL/httpfs v0.0.0-20190707220628-8d4bc4ba7749 // indirect
+	github.com/shurcooL/vfsgen v0.0.0-20200824052919-0d455de96546 // indirect
+	golang.org/x/sys v0.3.0 // indirect
+	golang.org/x/text v0.5.0 // indirect
+	google.golang.org/protobuf v1.28.1 // indirect
 )

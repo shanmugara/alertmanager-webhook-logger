@@ -19,16 +19,15 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/go-kit/kit/log"
+	"github.com/prometheus/alertmanager/template"
+	"github.com/zenizh/go-capturer"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"strings"
 	"testing"
 	"time"
-
-	"github.com/go-kit/kit/log"
-	"github.com/kami-zh/go-capturer"
-	"github.com/prometheus/alertmanager/template"
 )
 
 func TestService(t *testing.T) {
@@ -140,7 +139,7 @@ func newAlerts() template.Data {
 				StartsAt:     time.Date(2000, 1, 1, 0, 0, 0, 0, time.UTC),
 				EndsAt:       time.Date(2000, 1, 1, 0, 0, 1, 0, time.UTC),
 				GeneratorURL: "file://generatorUrl",
-                                Fingerprint:  "3b15fd163d36582e",
+				Fingerprint:  "3b15fd163d36582e",
 			},
 			template.Alert{
 				Annotations: map[string]string{"a_key_warn": "a_value_warn"},

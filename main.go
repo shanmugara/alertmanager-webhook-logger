@@ -17,6 +17,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -68,9 +69,12 @@ func main() {
 func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	var alerts template.Data
 	// debug
-	body, _ := ioutil.ReadAll(r.Body)
-	fmt.Println("r.Body:", string(body))
-	err := json.NewDecoder(r.Body).Decode(&alerts)
+	bodyBytes, _ := ioutil.ReadAll(r.Body)
+	bodyBuffer := bytes.NewBuffer(bodyBytes)
+
+	fmt.Println("r.Body:", bodyBuffer.String())
+
+	err := json.NewDecoder(bodyBuffer).Decode(&alerts)
 	if err != nil {
 		errorLog.Printf("cannot parse content because of %s", err)
 		http.Error(w, err.Error(), http.StatusBadRequest)
